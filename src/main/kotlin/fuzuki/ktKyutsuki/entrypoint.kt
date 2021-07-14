@@ -2,8 +2,10 @@ package fuzuki.ktKyutsuki
 
 import dev.kord.core.Kord
 import dev.kord.core.event.gateway.ReadyEvent
+import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
-import fuzuki.ktKyutsuki.core.logging.*
+import fuzuki.ktKyutsuki.core.commands.CommandHandler
+import fuzuki.ktKyutsuki.core.logging.LogLevel
 import fuzuki.ktKyutsuki.core.logging.Logger
 import fuzuki.ktKyutsuki.core.logging.dsl.loggers
 import io.github.cdimascio.dotenv.dotenv
@@ -43,6 +45,9 @@ suspend fun main() {
 
     client.on<ReadyEvent> {
         Logger.log(LogLevel.Info, "キュツキはログインしました")
+    }
+    client.on<MessageCreateEvent> {
+        CommandHandler.handle(message)
     }
 
     client.login()
