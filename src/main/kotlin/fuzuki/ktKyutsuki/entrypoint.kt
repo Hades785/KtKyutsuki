@@ -1,6 +1,8 @@
 package fuzuki.ktKyutsuki
 
 import dev.kord.core.Kord
+import dev.kord.core.event.gateway.ReadyEvent
+import dev.kord.core.on
 import fuzuki.ktKyutsuki.core.logging.*
 import fuzuki.ktKyutsuki.core.logging.Logger
 import fuzuki.ktKyutsuki.core.logging.dsl.loggers
@@ -39,10 +41,9 @@ suspend fun main() {
 
     val client = Kord(env["TOKEN"])
 
-    loggerGroup.log(LogLevel.Neutral, "キュツキはログインしています")
-    loggerGroup.log(LogLevel.Info, "キュツキはログインしています")
-    loggerGroup.log(LogLevel.Warn, "キュツキはログインしています")
-    loggerGroup.log(LogLevel.Error, "キュツキはログインしています")
+    client.on<ReadyEvent> {
+        Logger.log(LogLevel.Info, "キュツキはログインしました")
+    }
 
     client.login()
 }
