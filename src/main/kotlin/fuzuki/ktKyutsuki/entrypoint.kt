@@ -11,9 +11,9 @@ import java.io.File
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
-suspend fun main() {
-    val env = dotenv()
+val env = dotenv()
 
+suspend fun main() {
     File("logs").apply { if (!exists()) mkdir() }
     val logFile = File("logs/${OffsetDateTime.now(ZoneOffset.UTC)}.txt")
 
