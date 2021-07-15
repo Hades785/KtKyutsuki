@@ -9,4 +9,5 @@ object CommandRegistry {
 
     fun register(command: Command) = registry.add(command)
     fun get(name: String): Command? = registry.find { it.name == name }
+    fun getAll(): Set<Command> = registry.toSet()
 }
