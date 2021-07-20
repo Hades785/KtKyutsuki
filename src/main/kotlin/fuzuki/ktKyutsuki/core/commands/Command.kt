@@ -4,7 +4,7 @@ import dev.kord.core.entity.Message
 import fuzuki.ktKyutsuki.core.logging.LogLevel
 import fuzuki.ktKyutsuki.core.logging.Logger
 
-class Command(val name: String, private val run: suspend Message.() -> Unit) {
+class Command(val name: String, val description: String, private val run: suspend Message.() -> Unit) {
     suspend fun execute(message: Message) {
         Logger.log(LogLevel.Info, "Command \"$name\" was called.")
         try {
