@@ -5,8 +5,8 @@ import dev.kord.core.event.gateway.ReadyEvent
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
 import fuzuki.ktKyutsuki.commands.systemCommands
-import fuzuki.ktKyutsuki.core.commands.CommandHandler
-import fuzuki.ktKyutsuki.core.commands.registerAll
+import fuzuki.ktKyutsuki.commands.testCommands
+import fuzuki.ktKyutsuki.core.commands.*
 import fuzuki.ktKyutsuki.core.logging.LogLevel
 import fuzuki.ktKyutsuki.core.logging.Logger
 import fuzuki.ktKyutsuki.core.logging.dsl.loggers
@@ -44,6 +44,7 @@ suspend fun main() {
     })
 
     systemCommands.registerAll()
+    testCommands.registerAll()
 
     val client = Kord(env["TOKEN"])
 
