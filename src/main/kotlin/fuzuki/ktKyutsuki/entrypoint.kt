@@ -9,7 +9,6 @@ import fuzuki.ktKyutsuki.commands.testCommands
 import fuzuki.ktKyutsuki.core.commands.*
 import fuzuki.ktKyutsuki.core.logging.LogLevel
 import fuzuki.ktKyutsuki.core.logging.Logger
-import fuzuki.ktKyutsuki.core.logging.dsl.loggers
 import io.github.cdimascio.dotenv.dotenv
 import java.io.File
 import java.time.OffsetDateTime
@@ -21,27 +20,36 @@ suspend fun main() {
     File("logs").apply { if (!exists()) mkdir() }
     val logFile = File("logs/${OffsetDateTime.now(ZoneOffset.UTC)}.txt")
 
-    Logger.loggerGroup.addAll(loggers {
-        logger {
-            stream(logFile.outputStream())
-            name("キュツキ")
-            colour(false)
-            level(LogLevel.Neutral)
-            level(LogLevel.Info)
-            level(LogLevel.Warn)
-            level(LogLevel.Error)
-        }
-        logger {
-            name("キュツキ")
-            level(LogLevel.Info)
-            level(LogLevel.Warn)
-        }
-        logger {
-            stream(System.err)
-            name("キュツキ")
-            level(LogLevel.Error)
-        }
-    })
+    Logger.loggerGroup.addAll(
+        listOf(
+            Logger(
+                stream = logFile.outputStream(),
+                name = "キュツキ",
+                colourOutput = false,
+                loggingLevel = listOf(
+                    LogLevel.Neutral,
+                    LogLevel.Info,
+                    LogLevel.Warn,
+                    LogLevel.Error
+                )
+            ),
+            Logger(
+                stream = System.out,
+                name = "キュツキ",
+                loggingLevel = listOf(
+                    LogLevel.Info,
+                    LogLevel.Neutral
+                )
+            ),
+            Logger(
+                stream = System.err,
+                name = "キュツキ",
+                loggingLevel = listOf(
+                    LogLevel.Error
+                )
+            )
+        )
+    )
 
     systemCommands.registerAll()
     testCommands.registerAll()

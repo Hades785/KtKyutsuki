@@ -32,10 +32,10 @@ fun LogLevel.colour(): Color {
 
 class Logger(
     stream: OutputStream,
-    private val loggingLevel: List<LogLevel>,
     private val name: String,
-    charset: String,
-    private val colourOutput: Boolean
+    private val loggingLevel: List<LogLevel>,
+    private val colourOutput: Boolean = true,
+    charset: String = "utf8"
 ) {
     companion object {
         val loggerGroup = mutableListOf<Logger>()
