@@ -21,7 +21,6 @@ dependencies {
     implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
     implementation("com.andreapivetta.kolor:kolor:1.0.0")
 
-    // Seriously... Why Kord? Why? (http://www.slf4j.org/codes.html#StaticLoggerBinder, section's last paragraph)
     implementation("org.slf4j:slf4j-nop:1.7.30")
 
     testImplementation(kotlin("test"))
