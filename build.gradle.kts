@@ -17,7 +17,7 @@ repositories {
 
 @Suppress("SpellCheckingInspection")
 dependencies {
-    implementation("dev.kord:kord-core:0.7.x-SNAPSHOT")
+    implementation("dev.kord:kord-core:0.8.x-SNAPSHOT")
     implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
     implementation("com.andreapivetta.kolor:kolor:1.0.0")
 
